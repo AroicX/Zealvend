@@ -7,7 +7,7 @@ $api = app(Router::class);
 
 $api->version('v1', function (Router $api) {
    
-    $api->get('/', function () { return response()->json(['status' => '200', 'msg' => 'success']);
+
         //auth group
         $api->post('register', 'App\\Api\\V1\\Controllers\\SignUpController@signUp');
         $api->post('login', 'App\\Api\\V1\\Controllers\\LoginController@login');
