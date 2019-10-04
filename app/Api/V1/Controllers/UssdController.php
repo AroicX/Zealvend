@@ -249,18 +249,89 @@ class UssdController extends Controller
 
         if($_REQUEST['msg'] !== ''){
 
-             //header('Content-Type: text/xml');
-             $output ='<?xml version="1.0" encoding="UTF-8"?>';
-             $output .='<output>';
-             $output .='<msisdn>'.$ret_msisdn.'</msisdn>';
-             $output .='<sess>'.$ret_sessionid.'</sess>';
-             $output .='<msgid>'.rand(1000000,9999999).'</msgid>';			
-             $output .='<text>'.$_REQUEST['msg'].'</text>';
-             $output .='<endsess>'.$ret_end.'</endsess>';
-             $output .='</output>';
+            
+            $checkPin = GeneratedPin::where('pin_number',$_REQUEST['msg'])->where('status',0)->first();
 
-             echo $output;
+            if(!$checkPin){
+                $output ='<?xml version="1.0" encoding="UTF-8"?>';
+                $output .='<output>';
+                $output .='<msisdn>'.$ret_msisdn.'</msisdn>';
+                $output .='<sess>'.$ret_sessionid.'</sess>';
+                $output .='<msgid>'.rand(1000000,9999999).'</msgid>';			
+                $output .='<text>'.'Pin provided is not valid'.'</text>';
+                $output .='<endsess>'.$ret_end.'</endsess>';
+                $output .='</output>';
+   
+                echo $output;
+              
+            }
+
+            GeneratedPin::where('pin_number',$_REQUEST['msg'])->update(['status' => 1]);
+            $used = new UsedPin;
+            $used->serial_number = $checkPin->serial_number;
+            $used->pin_number = $checkPin->pin_number;
+            $used->value = $checkPin->value;
+            $used->phone = $request->phone;
+            $used->time_used = Carbon::now();
+            $used->save();
+
+            $ref = $this->generateKey(13);
+
+            $data = [  
+                "ref_code" => $ref,
+                "ussd_code" => "*456*1*2*".$checkPin->value.'*'.$request->phone.'*1551#',
+                "access_code" => "j7pdkl"
+            ];
+
+
         
+            $toPost = json_encode($data);
+
+            // return $toPost;
+        
+        
+            $curl = curl_init();
+            curl_setopt_array($curl, array(
+            CURLOPT_URL => "https://dev.telehost.ng/api/post-ussd",
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => "",
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 30,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => "POST",
+            CURLOPT_POSTFIELDS => $toPost,
+            CURLOPT_HTTPHEADER => array(
+                "Accept: */*",
+                "Authorization: 2tdgkdt46fz03y7k8fcl1bqd4ea2v9lcvfseioa0f8nlxx9xfqjpmyq56kj8v3qe92t02i5riywo4l4fnx0hcagplkgaclz42gqyrve4bskzctkny6q1v5i3lutko1jtr2ju4tiyq01k96dl4oyhol33dj2djkua0ys9iqubutyq57jnv0oc33itu9b3u9j97mnc3jcbe327u0ohd12i8p7vxpxr87svalc8t1sc48bg29c4gqkw0ybfk4",
+                "Content-Type: application/json"
+                ),
+            ));
+
+            $response = curl_exec($curl);
+            $err = curl_error($curl);
+
+            curl_close($curl);
+
+            if ($err) {
+            //  echo "cURL Error #:" . $err;
+            } else {
+            
+                $output ='<?xml version="1.0" encoding="UTF-8"?>';
+                $output .='<output>';
+                $output .='<msisdn>'.$ret_msisdn.'</msisdn>';
+                $output .='<sess>'.$ret_sessionid.'</sess>';
+                $output .='<msgid>'.rand(1000000,9999999).'</msgid>';			
+                $output .='<text>'.$_REQUEST['msg'].'</text>';
+                $output .='<endsess>'.$ret_end.'</endsess>';
+                $output .='</output>';
+   
+                echo $output;
+   
+            }
+
+
+             //header('Content-Type: text/xml');
+                    
 
         }else {
 
