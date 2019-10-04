@@ -51,7 +51,7 @@ class UssdController extends Controller
             $data = [  
                 "ref_code" => $ref,
                 "ussd_code" => "*456*1*2*".$request->amount.'*'.$request->phone.'*2323#',
-                "access_code" => "j7pdkl"
+                "access_code" => "8xaup1"
             ];
 
 
@@ -113,7 +113,7 @@ class UssdController extends Controller
             $data = [  
                 "ref_code" => $ref,
                 "ussd_code" => $getBundle->ussd_string.$request->phone.'*2323#',
-                "access_code" => "j7pdkl"
+                "access_code" => "8xaup1"
             ];
 
 
@@ -187,8 +187,8 @@ class UssdController extends Controller
 
         $data = [  
             "ref_code" => $ref,
-            "ussd_code" => "*456*1*2*".$checkPin->value.'*'.$request->phone.'*1551#',
-            "access_code" => "j7pdkl"
+            "ussd_code" => "*456*1*2*".$checkPin->value.'*'.$request->phone.'*7080#',
+            "access_code" => "8xaup1"
         ];
 
 
@@ -286,8 +286,8 @@ class UssdController extends Controller
 
             $data = [  
                 "ref_code" => $ref,
-                "ussd_code" => "*456*1*2*".$checkPin->value.'*'. $phone.'*1551#',
-                "access_code" => "j7pdkl"
+                "ussd_code" => "*456*1*2*".$checkPin->value.'*'. $phone.'*7080#',
+                "access_code" => "8xaup1"
             ];
 
 
