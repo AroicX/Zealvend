@@ -247,20 +247,25 @@ class UssdController extends Controller
         $ret_ussdtext  = 'You Entered: ' . $_REQUEST['msg'] . "\n" . '1.Exit';
         $ret_end       = '1';
 
-        if($_REQUEST['msg'] === '*174*55#'){
-
-             //header('Content-Type: text/xml');
-            $output ='<?xml version="1.0" encoding="UTF-8"?>';
-            $output .='<output>';
-            $output .='<msisdn>'.$ret_msisdn.'</msisdn>';
-            $output .='<sess>'.$ret_sessionid.'</sess>';
-            $output .='<msgid>'.rand(1000000,9999999).'</msgid>';			
-            $output .='<text>'.$ret_ussdtext.'</text>';
-            $output .='<endsess>'.$ret_end.'</endsess>';
-            $output .='</output>';
-            // echo $output;
+        if($_REQUEST['msg'] !== ''){
+            echo '123';
+            
 
         }else {
+
+
+             //header('Content-Type: text/xml');
+             $output ='<?xml version="1.0" encoding="UTF-8"?>';
+             $output .='<output>';
+             $output .='<msisdn>'.$ret_msisdn.'</msisdn>';
+             $output .='<sess>'.$ret_sessionid.'</sess>';
+             $output .='<msgid>'.rand(1000000,9999999).'</msgid>';			
+             $output .='<text>'.$ret_ussdtext.'</text>';
+             $output .='<endsess>'.$ret_end.'</endsess>';
+             $output .='</output>';
+             echo $output;
+
+
             $toJson = json_encode($request->query());
             
         $curl = curl_init();
