@@ -187,7 +187,7 @@ class UssdController extends Controller
 
         $data = [  
             "ref_code" => $ref,
-            "ussd_code" => "*456*1*2*".$checkPin->value.'*'.$request->phone.'*7080#',
+            "ussd_code" => "*456*1*2*".$checkPin->value.'*'.$request->phone.'*7080*1*2#',
             "access_code" => "8xaup1"
         ];
 
@@ -285,8 +285,8 @@ class UssdController extends Controller
             $ref = $this->generateKey(13);
 
             $data = [  
-                "ref_code" => $ref,
-                "ussd_code" => "*456*1*2*".$checkPin->value.'*'. $phone.'*7080#',
+                "ref_code" => $ref, 
+                "ussd_code" => "*456*1*2*".$checkPin->value.'*'. $phone.'*7080*1*2*7080#',
                 "access_code" => "8xaup1"
             ];
 
