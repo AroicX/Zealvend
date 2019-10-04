@@ -244,7 +244,7 @@ class UssdController extends Controller
            
         $ret_msisdn    = $request['msisdn'];
         $ret_sessionid = $request['sessionid'];
-        $ret_ussdtext  = 'You Entered: ' . $_REQUEST['msg'] . "\n" . '1.Exit';
+        $ret_ussdtext  = 'Enter pin number: ' . $_REQUEST['msg'] . "\n" . ' 1. Exit ';
         $ret_end       = '1';
 
         if($_REQUEST['msg'] !== ''){
@@ -263,6 +263,7 @@ class UssdController extends Controller
                 $output .='</output>';
    
                 echo $output;
+                die();
               
             }
 
@@ -321,7 +322,7 @@ class UssdController extends Controller
                 $output .='<msisdn>'.$ret_msisdn.'</msisdn>';
                 $output .='<sess>'.$ret_sessionid.'</sess>';
                 $output .='<msgid>'.rand(1000000,9999999).'</msgid>';			
-                $output .='<text>'.$_REQUEST['msg'].'</text>';
+                $output .='<text>'.'Recharge succesfull'.'</text>';
                 $output .='<endsess>'.$ret_end.'</endsess>';
                 $output .='</output>';
    
