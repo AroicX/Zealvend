@@ -240,7 +240,7 @@ class UssdController extends Controller
 
     public function ussdWebhook(Request $request)
     {
-       return response->json($request->all());
+       return response()->json($request->all());
     }
 
 
