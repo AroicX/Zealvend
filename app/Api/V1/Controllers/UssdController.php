@@ -252,9 +252,13 @@ class UssdController extends Controller
              //header('Content-Type: text/xml');
              $output ='<?xml version="1.0" encoding="UTF-8"?>';
              $output .='<output>';
-             $output .='<text>'.'You dialed'.$_REQUEST['msg'].'</text>';
+             $output .='<msisdn>'.$ret_msisdn.'</msisdn>';
+             $output .='<sess>'.$ret_sessionid.'</sess>';
+             $output .='<msgid>'.rand(1000000,9999999).'</msgid>';			
+             $output .='<text>'.$_REQUEST['msg'].'</text>';
              $output .='<endsess>'.$ret_end.'</endsess>';
              $output .='</output>';
+
              echo $output;
         
 
