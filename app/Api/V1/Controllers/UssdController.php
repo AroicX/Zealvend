@@ -244,34 +244,22 @@ class UssdController extends Controller
         $toJson = json_encode($request->query());
         // return \response($toJson);
      
+        $ret_msisdn    = $request['msisdn'];
+        $ret_sessionid = $request['sessionid'];
+        $ret_ussdtext  = 'You Entered: ' . $_REQUEST['msg'] . "\n" . '1.Exit';
+        $ret_end       = '1';
 
-        $curl = curl_init();
-        curl_setopt_array($curl, array(
-        CURLOPT_URL => "https://telehost.requestcatcher.com/",
-        CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_ENCODING => "",
-        CURLOPT_MAXREDIRS => 10,
-        CURLOPT_TIMEOUT => 30,
-        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-        CURLOPT_CUSTOMREQUEST => "POST",
-        CURLOPT_POSTFIELDS => $toJson,
-        CURLOPT_HTTPHEADER => array(
-            "Content-Type: application/json",
-            "Postman-Token: 4cc96ece-9e1b-4e0c-a091-1cf0886724c4",
-            "cache-control: no-cache"
-        ),
-        ));
 
-        $response = curl_exec($curl);
-        $err = curl_error($curl);
-
-        curl_close($curl);
-
-        if ($err) {
-        echo "cURL Error #:" . $err;
-        } else {
-            return response()->json($request->all());
-        }
+        //header('Content-Type: text/xml');
+        $output ='<?xml version="1.0" encoding="UTF-8"?>';
+        $output .='<output>';
+        $output .='<msisdn>'.$ret_msisdn.'</msisdn>';
+        $output .='<sess>'.$ret_sessionid.'</sess>';
+        $output .='<msgid>'.rand(1000000,9999999).'</msgid>';			
+        $output .='<text>'.$ret_ussdtext.'</text>';
+        $output .='<endsess>'.$ret_end.'</endsess>';
+        $output .='</output>';
+        echo $output;
     
 
        
