@@ -252,7 +252,7 @@ class UssdController extends Controller
              //header('Content-Type: text/xml');
              $output ='<?xml version="1.0" encoding="UTF-8"?>';
              $output .='<output>';
-             $output .='<msisdn>'.'You dialed'.$_REQUEST['msg'].'</msisdn>';
+             $output .='<text>'.'You dialed'.$_REQUEST['msg'].'</text>';
              $output .='<endsess>'.$ret_end.'</endsess>';
              $output .='</output>';
              echo $output;
