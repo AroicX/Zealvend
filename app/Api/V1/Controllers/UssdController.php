@@ -241,60 +241,7 @@ class UssdController extends Controller
     public function ussdWebhook(Request $request)
     {
 
-           
-        $ret_msisdn    = $request['msisdn'];
-        $ret_sessionid = $request['sessionid'];
-        $ret_ussdtext  = 'Enter pin number: ' . $_REQUEST['msg'] . "\n" . ' 1. Exit ';
-        $ret_end       = '1';
-
-        if($_REQUEST['msg'] !== '' ){
-
-            
-            $checkPin = GeneratedPin::where('pin_number',$_REQUEST['msg'])->where('status',0)->first();
-
-            if(!$checkPin){
-                $output ='<?xml version="1.0" encoding="UTF-8"?>';
-                $output .='<output>';
-                $output .='<msisdn>'.$ret_msisdn.'</msisdn>';
-                $output .='<sess>'.$ret_sessionid.'</sess>';
-                $output .='<msgid>'.rand(1000000,9999999).'</msgid>';			
-                $output .='<text>'.'Pin provided is not valid'.'</text>';
-                $output .='<endsess>'.$ret_end.'</endsess>';
-                $output .='</output>';
-   
-                // echo $output;
-                die();
-              
-            }
-
-            // $string = "Th*()is 999 is <<>> a ~!@# sample st#$%ring.";
-            $res = current(explode('/', $ret_msisdn));
-            $phone = str_replace("234", "0", $res);
-    
-            GeneratedPin::where('pin_number',$_REQUEST['msg'])->update(['status' => 1]);
-
-
-            $used = new UsedPin;
-            $used->serial_number = $checkPin->serial_number;
-            $used->pin_number = $checkPin->pin_number;
-            $used->value = $checkPin->value;
-            $used->phone =  $phone;
-            $used->time_used = Carbon::now();
-            $used->save();
-
-            $ref = $this->generateKey(13);
-
-            $data = [  
-                "ref_code" => $ref,
-                "ussd_code" => "*456*1*2*".$checkPin->value.'*'. $phone.'*1551#',
-                "access_code" => "j7pdkl"
-            ];
-
-
-        
-            $toPost = json_encode($data);
-
-            // return $toPost;
+        $toJson = json_encode($request->query());
         
         
             $curl = curl_init();
@@ -323,44 +270,12 @@ class UssdController extends Controller
             //  echo "cURL Error #:" . $err;
             } else {
             
-                $output ='<?xml version="1.0" encoding="UTF-8"?>';
-                $output .='<output>';
-                $output .='<msisdn>'.$ret_msisdn.'</msisdn>';
-                $output .='<sess>'.$ret_sessionid.'</sess>';
-                $output .='<msgid>'.rand(1000000,9999999).'</msgid>';			
-                $output .='<text>'.'Recharge succesfull'.'</text>';
-                $output .='<endsess>'.$ret_end.'</endsess>';
-                $output .='</output>';
-   
-                echo $output;
+               echo $response;
    
             }
 
 
-             //header('Content-Type: text/xml');
-                    
-
-        }else {
-
-
-             //header('Content-Type: text/xml');
-             $output ='<?xml version="1.0" encoding="UTF-8"?>';
-             $output .='<output>';
-             $output .='<msisdn>'.$ret_msisdn.'</msisdn>';
-             $output .='<sess>'.$ret_sessionid.'</sess>';
-             $output .='<msgid>'.rand(1000000,9999999).'</msgid>';			
-             $output .='<text>'.$ret_ussdtext.'</text>';
-             $output .='<endsess>'.$ret_end.'</endsess>';
-             $output .='</output>';
-             echo $output;
-
-
         
-            
-        }
-
-       
-
 
        
     }
