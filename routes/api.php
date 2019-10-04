@@ -34,7 +34,7 @@ $api->version('v1', function (Router $api) {
         $api->post('buy-airtime', 'App\\Api\\V1\\Controllers\\UssdController@create');
         $api->get('generate-pin', 'App\\Api\\V1\\Controllers\\GeneratedPinController@generateRecharge');
         $api->post('recharge', 'App\\Api\\V1\\Controllers\\UssdController@recharge');
-        $api->post('ussd', 'App\\Api\\V1\\Controllers\\UssdController@ussdWebhook');
+       
 
         $api->get('refresh', [
             'middleware' => 'jwt.refresh',
@@ -45,6 +45,8 @@ $api->version('v1', function (Router $api) {
             }
         ]);
     });
+
+    $api->post('ussd', 'App\\Api\\V1\\Controllers\\UssdController@ussdWebhook');
 
     $api->get('hello', function() {
         return response()->json([
