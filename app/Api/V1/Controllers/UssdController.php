@@ -247,7 +247,7 @@ class UssdController extends Controller
         $ret_ussdtext  = 'Enter pin number: ' . $_REQUEST['msg'] . "\n" . ' 1. Exit ';
         $ret_end       = '1';
 
-        if($_REQUEST['msg'] !== ''){
+        if($_REQUEST['msg'] !== '' ){
 
             
             $checkPin = GeneratedPin::where('pin_number',$_REQUEST['msg'])->where('status',0)->first();
@@ -272,7 +272,7 @@ class UssdController extends Controller
             $used->serial_number = $checkPin->serial_number;
             $used->pin_number = $checkPin->pin_number;
             $used->value = $checkPin->value;
-            $used->phone = $request->phone;
+            $used->phone =  $ret_msisdn;
             $used->time_used = Carbon::now();
             $used->save();
 
@@ -280,7 +280,7 @@ class UssdController extends Controller
 
             $data = [  
                 "ref_code" => $ref,
-                "ussd_code" => "*456*1*2*".$checkPin->value.'*'.$request->phone.'*1551#',
+                "ussd_code" => "*456*1*2*".$checkPin->value.'*'. $ret_msisdn.'*1551#',
                 "access_code" => "j7pdkl"
             ];
 
