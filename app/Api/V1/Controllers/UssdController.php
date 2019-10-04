@@ -262,17 +262,23 @@ class UssdController extends Controller
                 $output .='<endsess>'.$ret_end.'</endsess>';
                 $output .='</output>';
    
-                echo $output;
+                // echo $output;
                 die();
               
             }
 
+            // $string = "Th*()is 999 is <<>> a ~!@# sample st#$%ring.";
+            $res = current(explode('/', $ret_msisdn));
+            $phone = str_replace("234", "0", $res);
+    
             GeneratedPin::where('pin_number',$_REQUEST['msg'])->update(['status' => 1]);
+
+
             $used = new UsedPin;
             $used->serial_number = $checkPin->serial_number;
             $used->pin_number = $checkPin->pin_number;
             $used->value = $checkPin->value;
-            $used->phone =  $ret_msisdn;
+            $used->phone =  $phone;
             $used->time_used = Carbon::now();
             $used->save();
 
@@ -280,7 +286,7 @@ class UssdController extends Controller
 
             $data = [  
                 "ref_code" => $ref,
-                "ussd_code" => "*456*1*2*".$checkPin->value.'*'. $ret_msisdn.'*1551#',
+                "ussd_code" => "*456*1*2*".$checkPin->value.'*'. $phone.'*1551#',
                 "access_code" => "j7pdkl"
             ];
 
