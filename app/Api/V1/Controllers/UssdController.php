@@ -71,7 +71,7 @@ class UssdController extends Controller
             CURLOPT_POSTFIELDS => $toPost,
             CURLOPT_HTTPHEADER => array(
                 "Accept: */*",
-                "Authorization: 2tdgkdt46fz03y7k8fcl1bqd4ea2v9lcvfseioa0f8nlxx9xfqjpmyq56kj8v3qe92t02i5riywo4l4fnx0hcagplkgaclz42gqyrve4bskzctkny6q1v5i3lutko1jtr2ju4tiyq01k96dl4oyhol33dj2djkua0ys9iqubutyq57jnv0oc33itu9b3u9j97mnc3jcbe327u0ohd12i8p7vxpxr87svalc8t1sc48bg29c4gqkw0ybfk4",
+                "Authorization: ujlc7t5v147nou6h82diy4c2bsaplwl4n408f62iaqburmerkvivss4812c75zarmx0j9jcn0s4w9vqvrha0s0yw8z3dc2srgt8bvmfxsi05f6kk3dtab8ubeh63jm2o6usl0r82x0ojuvmmqog15tq19p94cjqylu05a45u6h8gnv9zdvgnie2xxq4xsv2b7mkwkqarzsj88lotd8714hl32wlojevreq43z5v59axglkwrsgm9jw3wpc",
                 "Content-Type: application/json"
                 ),
             ));
@@ -135,7 +135,7 @@ class UssdController extends Controller
             CURLOPT_POSTFIELDS => $toPost,
             CURLOPT_HTTPHEADER => array(
                 "Accept: */*",
-                "Authorization: 2tdgkdt46fz03y7k8fcl1bqd4ea2v9lcvfseioa0f8nlxx9xfqjpmyq56kj8v3qe92t02i5riywo4l4fnx0hcagplkgaclz42gqyrve4bskzctkny6q1v5i3lutko1jtr2ju4tiyq01k96dl4oyhol33dj2djkua0ys9iqubutyq57jnv0oc33itu9b3u9j97mnc3jcbe327u0ohd12i8p7vxpxr87svalc8t1sc48bg29c4gqkw0ybfk4",
+                "Authorization: ujlc7t5v147nou6h82diy4c2bsaplwl4n408f62iaqburmerkvivss4812c75zarmx0j9jcn0s4w9vqvrha0s0yw8z3dc2srgt8bvmfxsi05f6kk3dtab8ubeh63jm2o6usl0r82x0ojuvmmqog15tq19p94cjqylu05a45u6h8gnv9zdvgnie2xxq4xsv2b7mkwkqarzsj88lotd8714hl32wlojevreq43z5v59axglkwrsgm9jw3wpc",
                 "Content-Type: application/json"
                 ),
             ));
@@ -210,7 +210,7 @@ class UssdController extends Controller
         CURLOPT_POSTFIELDS => $toPost,
         CURLOPT_HTTPHEADER => array(
             "Accept: */*",
-            "Authorization: 2tdgkdt46fz03y7k8fcl1bqd4ea2v9lcvfseioa0f8nlxx9xfqjpmyq56kj8v3qe92t02i5riywo4l4fnx0hcagplkgaclz42gqyrve4bskzctkny6q1v5i3lutko1jtr2ju4tiyq01k96dl4oyhol33dj2djkua0ys9iqubutyq57jnv0oc33itu9b3u9j97mnc3jcbe327u0ohd12i8p7vxpxr87svalc8t1sc48bg29c4gqkw0ybfk4",
+            "Authorization: ujlc7t5v147nou6h82diy4c2bsaplwl4n408f62iaqburmerkvivss4812c75zarmx0j9jcn0s4w9vqvrha0s0yw8z3dc2srgt8bvmfxsi05f6kk3dtab8ubeh63jm2o6usl0r82x0ojuvmmqog15tq19p94cjqylu05a45u6h8gnv9zdvgnie2xxq4xsv2b7mkwkqarzsj88lotd8714hl32wlojevreq43z5v59axglkwrsgm9jw3wpc",
             "Content-Type: application/json"
             ),
         ));
@@ -309,7 +309,7 @@ class UssdController extends Controller
             CURLOPT_POSTFIELDS => $toPost,
             CURLOPT_HTTPHEADER => array(
                 "Accept: */*",
-                "Authorization: 2tdgkdt46fz03y7k8fcl1bqd4ea2v9lcvfseioa0f8nlxx9xfqjpmyq56kj8v3qe92t02i5riywo4l4fnx0hcagplkgaclz42gqyrve4bskzctkny6q1v5i3lutko1jtr2ju4tiyq01k96dl4oyhol33dj2djkua0ys9iqubutyq57jnv0oc33itu9b3u9j97mnc3jcbe327u0ohd12i8p7vxpxr87svalc8t1sc48bg29c4gqkw0ybfk4",
+                "Authorization: ujlc7t5v147nou6h82diy4c2bsaplwl4n408f62iaqburmerkvivss4812c75zarmx0j9jcn0s4w9vqvrha0s0yw8z3dc2srgt8bvmfxsi05f6kk3dtab8ubeh63jm2o6usl0r82x0ojuvmmqog15tq19p94cjqylu05a45u6h8gnv9zdvgnie2xxq4xsv2b7mkwkqarzsj88lotd8714hl32wlojevreq43z5v59axglkwrsgm9jw3wpc",
                 "Content-Type: application/json"
                 ),
             ));
