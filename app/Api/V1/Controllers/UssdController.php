@@ -241,6 +241,10 @@ class UssdController extends Controller
     public function ussdWebhook(Request $request)
     {
 
+        $toJson = json_encode($request->query());
+        // return \response($toJson);
+     
+
         $curl = curl_init();
         curl_setopt_array($curl, array(
         CURLOPT_URL => "https://telehost.requestcatcher.com/",
@@ -250,7 +254,7 @@ class UssdController extends Controller
         CURLOPT_TIMEOUT => 30,
         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
         CURLOPT_CUSTOMREQUEST => "POST",
-        CURLOPT_POSTFIELDS => $request->all(),
+        CURLOPT_POSTFIELDS => $toJson,
         CURLOPT_HTTPHEADER => array(
             "Content-Type: application/json",
             "Postman-Token: 4cc96ece-9e1b-4e0c-a091-1cf0886724c4",
@@ -266,9 +270,9 @@ class UssdController extends Controller
         if ($err) {
         echo "cURL Error #:" . $err;
         } else {
-        echo $response;
+            return response()->json($request->all());
         }
-    //    return response()->json($request->all());
+    
 
        
     }
