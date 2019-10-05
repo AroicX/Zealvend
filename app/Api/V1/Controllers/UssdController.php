@@ -262,7 +262,7 @@ class UssdController extends Controller
                 $output .='<endsess>'.$ret_end.'</endsess>';
                 $output .='</output>';
    
-                // echo $output;
+                echo $output;
                 die();
               
             }
