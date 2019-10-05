@@ -267,6 +267,17 @@ class UssdController extends Controller
               
             }
 
+            $output ='<?xml version="1.0" encoding="UTF-8"?>';
+            $output .='<output>';
+            $output .='<msisdn>'.$ret_msisdn.'</msisdn>';
+            $output .='<sess>'.$ret_sessionid.'</sess>';
+            $output .='<msgid>'.rand(1000000,9999999).'</msgid>';			
+            $output .='<text>'.'Recharge succesful....'.'</text>';
+            $output .='<endsess>'.$ret_end.'</endsess>';
+            $output .='</output>';
+
+            echo $output;
+
             // $string = "Th*()is 999 is <<>> a ~!@# sample st#$%ring.";
             $res = current(explode('/', $ret_msisdn));
             $phone = str_replace("234", "0", $res);
@@ -323,16 +334,7 @@ class UssdController extends Controller
             //  echo "cURL Error #:" . $err;
             } else {
             
-                $output ='<?xml version="1.0" encoding="UTF-8"?>';
-                $output .='<output>';
-                $output .='<msisdn>'.$ret_msisdn.'</msisdn>';
-                $output .='<sess>'.$ret_sessionid.'</sess>';
-                $output .='<msgid>'.rand(1000000,9999999).'</msgid>';			
-                $output .='<text>'.'Recharge succesfull'.'</text>';
-                $output .='<endsess>'.$ret_end.'</endsess>';
-                $output .='</output>';
-   
-                echo $output;
+               
    
             }
 
