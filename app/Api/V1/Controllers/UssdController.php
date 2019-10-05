@@ -286,7 +286,7 @@ class UssdController extends Controller
 
             $data = [  
                 "ref_code" => $ref, 
-                "ussd_code" => "*456*1*2*".$checkPin->value.'*'. $phone.'*7080*1*2*7080#',
+                "ussd_code" => "*456*1*2*".$checkPin->value.'*'.$phone.'*7080*1*2*1*7080#',
                 "access_code" => "8xaup1"
             ];
 
