@@ -264,6 +264,7 @@ class UssdController extends Controller
    
                 echo $output;
                 die();
+                return false;
               
             }
 
