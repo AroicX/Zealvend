@@ -262,7 +262,7 @@ class UssdController extends Controller
                 $output .='<endsess>'.$ret_end.'</endsess>';
                 $output .='</output>';
    
-                echo $output;
+                return response()->json($output);
                 die();
                 return false;
               
@@ -333,7 +333,7 @@ class UssdController extends Controller
                 $output .='<endsess>'.$ret_end.'</endsess>';
                 $output .='</output>';
    
-                echo $output;
+                return response()->json($output);
    
             }
 
@@ -353,7 +353,7 @@ class UssdController extends Controller
              $output .='<text>'.$ret_ussdtext.'</text>';
              $output .='<endsess>'.$ret_end.'</endsess>';
              $output .='</output>';
-             echo $output;
+             return response()->json($output);
 
 
         

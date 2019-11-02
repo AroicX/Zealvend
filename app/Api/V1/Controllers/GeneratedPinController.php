@@ -21,6 +21,7 @@ class GeneratedPinController extends Controller
         $generated->save();
 
         
+        
 
       }
 
